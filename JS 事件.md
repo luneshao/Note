@@ -1,5 +1,5 @@
 # JS事件
-## 事件处理属性
+## 1.事件处理属性
 * `btn.onfocus`及`btn.onblur` — 颜色将于按钮被置于焦点或解除焦点时改变（尝试使用Tab移动至按钮上，然后再移开）。<br>
   这些通常用于显示有关如何在置于焦点时填写表单字段的信息，或者如果表单字段刚刚填入不正确的值，则显示错误消息。<br>
 * `btn.ondblclick` — 颜色将仅于按钮被双击时改变。<br>
@@ -9,7 +9,7 @@
   事件处理器添加到按钮本身，它将不会工作 — 我们只能将它添加到代表整个浏览器窗口的 window对象中。<br>
 * `btn.onmouseover` 和 `btn.onmouseout` — 颜色将会在鼠标移入按钮上方时发生改变, 或者当它从按钮移出时.<br>
 
-## addEventListener()和removeEventListener()
+## 2.addEventListener()和removeEventListener()
   [原文](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)<br>
   `addEventListener()`和`removeEventListener()`:这个机制带来了一些相较于旧方式的优点。有一个相对应的方法，removeEventListener()，<br>
   这个方法移除事件监听器。您也可以给同一个监听器注册多个处理器。
@@ -43,7 +43,7 @@
   当使用 addEventListener() 为一个元素注册事件的时候，句柄里的 this 值是该元素的引用。<br>
   其与传递给句柄的 event 参数的 currentTarget 属性的值一样。
   
-## 事件对象
+## 3.事件对象
   有时候在事件处理函数内部，您可能会看到一个固定指定名称的参数，例如event，evt或简单的e。<br>
   这被称为事件对象，它被自动传递给事件处理函数，以提供额外的功能和信息。
 ```javascript
