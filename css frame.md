@@ -1,6 +1,6 @@
 # CSS 架构
 ## BEM 命名方式
-    [原文链接] (https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+[原文链接] (https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
     BEM:
 * B: .block represents the higher level of an abstraction or component.
          表示一个抽象或组件。
@@ -9,7 +9,7 @@
 * M: .block--modifier represents a different state or version of .block.
          表示一个不同状态或版本的组件。
 ## 命名空间
-    [原文链接] (https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
+[原文链接] (https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
 * o: Signify that something is an Object, and that it may be used in any number of unrelated 
          contexts to the one you can currently see it in.Making modifications to these types of class
          could potentially have knock-on effects in a lot of other unrelated places. Tread carefully.
