@@ -11,6 +11,7 @@
 * `btn.onmouseover` 和 `btn.onmouseout` — 颜色将会在鼠标移入按钮上方时发生改变, 或者当它从按钮移出时.
 
 ### addEventListener()和removeEventListener()
+  [原文](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener)
   `addEventListener()`和`removeEventListener()`:这个机制带来了一些相较于旧方式的优点。有一个相对应的方法，removeEventListener()，<br>
   这个方法移除事件监听器。您也可以给同一个监听器注册多个处理器。
 ```javascript
@@ -23,7 +24,7 @@
 
   btn.addEventListener('click', bgChange);
 ```
-#### `语法`:
+#### 语法:
   ```javascript
   target.addEventListener(type, listener, options);
   target.addEventListener(type, listener ,{capture: Boolean, passive: Boolean, once: Boolean});
@@ -60,10 +61,10 @@ btn.addEventListener('click', bgChange);
   * `preventDefault()`:组织默认行为。
   * 事件冒泡及捕获
   当一个事件发生在具有父元素的元素上时，现代浏览器运行两个不同的阶段 - 捕获阶段和冒泡阶段。
+#### 捕获阶段
     * 浏览器检查元素的最外层祖先`<html>`，是否在捕获阶段中注册了一个`onclick`事件处理程序，如果是，则运行它。
     * 然后，它移动到`<html>`中的下一个元素，并`执行相同`的操作，然后是下一个元素，依此类推，直到到达实际点击的元素。
-    在冒泡阶段，恰恰相反:
-
+#### 在冒泡阶段，恰恰相反:
     * 浏览器检查实际点击的元素是否在冒泡阶段中注册了一个onclick事件处理程序，如果是，则运行它
     * 然后它移动到下一个直接的祖先元素，并做同样的事情，然后是下一个，等等，直到它到达<html>元素。
     在现代浏览器中，默认情况下，所有事件处理程序都在冒泡阶段进行注册。
