@@ -1,4 +1,4 @@
-# JS学习笔记
+# JS对象
 
 ## 1.String 对象
     
@@ -21,6 +21,10 @@
   `Date.UTC()`:接受和构造函数最长形式的参数相同的参数（从2到7），并返回从 1970-01-01 00:00:00 UTC 开始所经过的毫秒数。
 ### Date 事例
   `Date.prototype.getTime()`: 返回从1970-1-1 00:00:00 UTC（协调世界时）到该日期经过的毫秒数，<br>
-  对于1970-1-1 00:00:00 UTC之前的时间返回负值。
+    对于1970-1-1 00:00:00 UTC之前的时间返回负值。
 ### conversion getter
-  ``
+  `Date.prototype.toDateString()`:以人类易读（human-readable）的形式返回该日期对象日期部分的字符串。
+  `Date.prototype.toTimeString()`:以人类易读格式返回日期对象时间部分的字符串。
+  `Date.prototype.toLocaleDateString()`: 返回一个表示该日期对象日期部分的字符串，该字符串格式与系统设置的地区关联（locality sensitive）。
+  `Date.prototype.toLocaleTimeString()`:返回一个表示该日期对象时间部分的字符串，该字符串格式与系统设置的地区关联（locality sensitive）。
+  
