@@ -1,6 +1,6 @@
 # CSS 架构
 ## BEM 命名方式
-[原文链接] (https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+[原文链接](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
     BEM:
 * B: .block represents the higher level of an abstraction or component.
          表示一个抽象或组件。
