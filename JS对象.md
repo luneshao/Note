@@ -113,4 +113,36 @@ JavaScript 用一种称为`构建函数`的特殊函数来定义对象和它们�
   `Date.prototype.toTimeString()`:以人类易读格式返回日期对象时间部分的字符串。<br>
   `Date.prototype.toLocaleDateString()`: 返回一个表示该日期对象日期部分的字符串，该字符串格式与系统设置的地区关联（locality sensitive）。<br>
   `Date.prototype.toLocaleTimeString()`:返回一个表示该日期对象时间部分的字符串，该字符串格式与系统设置的地区关联（locality sensitive）。
-  
+## 3.Math对象
+	Math 是一个内置对象， 它具有数学常数和函数的属性和方法。不是一个函数对象。<br>
+	与其它全局对象不同的是, Math 不是一个构造器.  Math 的所有属性和方法都是静态的. <br>
+### 属性
+	`Math.PI`:圆周率，一个圆的周长和直径之比，约等于 3.14159。<br>
+	`Math.LOG2E`:以2为底E的对数, 约等于 1.443.<br>
+	`Math.SQRT1_2`:1/2的平方根, 约等于 0.707.<br>
+### 方法
+	`Math.abs(x)`:返回绝对值.<br>
+	`Math.cbrt(x)`:返回数值的立方根.<br>
+#### polyfill
+	```javascript
+	if (!Math.cbrt) {
+		Math.cbrt = function(x) {
+			var y = Math.pow(Math.abs(x), 1/3);
+			return x < 0 ? -y : y;
+		};
+	}
+	```
+	`Math.ceil(x)`: 函数返回大于或等于一个给定数字的最小整数。<br>
+	`Math.floor(x)`:返回小于x的最大整数。<br>
+	`Math.hypot([x[,y[,…]]]) `:返回其参数平方和的平方根。<br>
+	`Math.max([x[,y[,…]]])`:返回参数中的最大值。<br>
+	`Math.min([x[,y[,...]]])`:返回参数中的最小值。<br>
+	`Math.pow(x,y)`:返回x的y次幂。<br>
+	`Math.random()`:返回一个[0, 1)的随机数。<br>
+	`Math.round(x)`:返回四舍五入的x的整数。<br>
+	`Math.sign()`:函数返回一个数字的符号, 指示数字是正数，负数还是零。此函数共有5种返回值, 分别是 1, -1, 0, -0, NaN. <br>
+	代表的各是正数, 负数, 正零, 负零, NaN。<br>
+	`Math.sqrt(x)`:返回x的算术平方根。<br>
+	`Math.trunc(x)`: 返回x的整数部分,去除小数。<br>
+	
+	
