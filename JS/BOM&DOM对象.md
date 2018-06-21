@@ -1,10 +1,10 @@
-[原文链接]('http://www.cnblogs.com/polk6/p/4957563.html')
+[原文链接](http://www.cnblogs.com/polk6/p/4957563.html)
 
 # BOM对象
 
 ## window对象
 
-###方法
+### 方法
 
 1.`atob(string base64Str)` ：将一个基于Base64编码的字符串解码为一个字符串。
 
