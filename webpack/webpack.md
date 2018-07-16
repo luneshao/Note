@@ -35,3 +35,16 @@ loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript
 ### 动态导入
 
 动态地加载模块。调用 import() 之处，被作为分离的模块起点，意思是，被请求的模块和它引用的所有子模块，会分离到一个单独的 chunk 中。
+
+## 2.webpack-dev-server
+
+  webpack-dev-server 为你提供了一个简单的 web 服务器，并且能够实时重新加载(live reloading)。
+ 
+  当使用 `webpack dev server` 和 `Node.js` API 时，不要将 `dev server` 选项放在 `webpack` 配置对象(webpack config object)中。而是，在创建选项时，将其作为第二个参数传递。例如：
+
+```javascript
+new WebpackDevServer(compiler, options)
+```
+
+想要启用 `HMR`，还需要修改 `webpack` 配置对象，使其包含 `HMR` 入口起点。`webpack-dev-server` package 中具有一个叫做 `addDevServerEntrypoints` 的方法，你可以通过使用这个方法来实现。
+  
