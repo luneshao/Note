@@ -1,6 +1,6 @@
 # Base64
 
-[原文链接]('https://blog.csdn.net/wanlixingzhe/article/details/7107923')
+(原文链接)['https://blog.csdn.net/wanlixingzhe/article/details/7107923']
 
 [原文链接]('http://www.cnblogs.com/hongru/archive/2012/01/14/2321397.html')
 
