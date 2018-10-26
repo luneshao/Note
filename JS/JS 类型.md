@@ -1,6 +1,6 @@
 # JS 类型
 
-(原文链接)[https://www.cnblogs.com/winter-cn/archive/2009/12/07/1618281.html]
+[原文链接](https://www.cnblogs.com/winter-cn/archive/2009/12/07/1618281.html)
 
 Object.prototype.toString: 返回一个表示该对象的字符串。
 
