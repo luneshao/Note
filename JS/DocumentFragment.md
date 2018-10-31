@@ -1,8 +1,8 @@
-# DocumentFragment
+# DocumentFragment的理解
 
 官方说明：创建文档片段对象。
 
-(原文链接)[https://www.cnblogs.com/xiaohuochai/p/5816048.html]
+[原文链接](https://www.cnblogs.com/xiaohuochai/p/5816048.html)
 
 ## 特征
 
