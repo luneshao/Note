@@ -1,6 +1,8 @@
 # css grid布局
 
-eg:
+[原文链接](https://www.cnblogs.com/wangzhichao/p/7987346.html)
+
+code:
 ```html
 <style>
   .wrapper {
@@ -21,7 +23,7 @@ eg:
   }
 </style>
 
-<div class="wrapper">
+<div class='wrapper'>
   <div class='item1'>1</div>
   <div class='item2'>2</div>
   <div class='item3'>3</div>
