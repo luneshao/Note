@@ -35,10 +35,10 @@ code:
 
 ## step:
 
-### 1.将display设置为grid: `display: grid`
+1.将display设置为grid: `display: grid`
 
-### 2.设置行和列： `grid-template-rows` & `grid-template-columns`, 每个属性后有几个值就是几列, 数值为行高或列宽
+2.设置行和列： `grid-template-rows` & `grid-template-columns`, 每个属性后有几个值就是几列, 数值为行高或列宽
 
-### 3.设置子元素的大小及位置：`grid-row-start` & `grid-row-end` & `grid-column-start` & `grid-column-end`
+3.设置子元素的大小及位置：`grid-row-start` & `grid-row-end` & `grid-column-start` & `grid-column-end`
 
   eg: {grid-row-start: 1; grid-row-end: 3} /*当前的子元素占两行*/
