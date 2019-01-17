@@ -61,3 +61,58 @@ axios#request(config) ... etc
 * 自动转换 JSON 数据
 
 * 客户端支持防御 XSRF
+
+### tip: vue试用axios发送post请求，服务端收不到参数
+
+[原文链接](https://blog.csdn.net/csdn_yudong/article/details/79668655)
+
+问题复现
+
+```javascript
+ axios({
+  method: 'post',
+  url: '/apis/news/getNewsList',
+  data: {
+    type: 2,
+    num: 5,
+    page: 1,
+    index: true,
+    last: false
+  }
+})
+  .then(res => {
+    resolve(res)
+  })
+```
+
+原因：
+
+我们的 Content-Type 变成了 application/json;charset=utf-8
+
+然后，因为我们的参数是 JSON 对象，axios 帮我们做了一个 stringify 的处理。
+
+而且查阅 axios 文档可以知道：axios 使用 post 发送数据时，默认是直接把 json 放到请求体中提交到后端的。
+
+那么，这就与我们服务端要求的 'Content-Type': 'application/x-www-form-urlencoded' 以及 @RequestParam 不符合。
+
+解决办法：
+
+```javascript
+  let param = new URLSearchParams()
+
+  for (let i in params) {
+    param.append(i, params[i])
+  }
+  
+  let instance = axios.create({
+    timeout: 1000,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+
+  instance.post('/apis/news/getNewsList', param)
+    .then(res => {
+      resolve(res)
+    })
+```
