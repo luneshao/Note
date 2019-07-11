@@ -118,4 +118,60 @@ output: hi
 
 如果 value 不为 undefined 或 null，则抛出 value。即 value 有值，就会抛出一个错误，值为 value。
 
+## async_hooks（异步钩子）
 
+### 1. async_hooks.createHook(callbacks)
+
+* callbacks：注册钩子回调
+
+    * init
+    * before
+    * after
+    * destroy
+    
+* Returns：返回一个 async_hooks 的实例，用于采用和禁用跟踪。
+
+⚠️ callbacks 通过原型链会被继承。
+
+### 2. asyncHook.enable()
+
+* Returns：返回一个 asyncHook 的引用
+
+为 asyncHook 启用回调。
+
+```js
+const async_hooks = require('async_hooks');
+
+const hook = async_hooks.createHook(callbacks).enable();
+```
+
+### 3. asyncHook.disable()
+
+* Returns：返回一个 asyncHook 的引用
+
+为 asyncHook 禁用回调。
+
+### 4. 钩子回调
+
+共分为四类 instantiation, before/after 回调被调用, 和实例被销毁 destroyed.
+
+* init (asyncId, type, triggerAsyncId, resource)
+
+    * asyncId：异步资源唯一的ID
+    * type：异步资源的类型
+    * triggerAsyncId：在创建 asyncHook 实例时执行的上下文的创建资源的ID
+    * resourceL：代表了异步操作资源的引用，需要在销毁期间释放。
+    
+当一个类被构造后，有可能会发出异步事件时被调用。
+
+#### type
+
+是一个字符串，用来表示调用 init 的资源的类型。通常，它对应于资源构造函数的名称。
+
+#### triggerAsyncId
+
+触发新资源初始化并导致 init 调用的资源的 asyncId。
+
+#### resource
+
+是一个对象，代表了已经初始化的实际的异步资源。
