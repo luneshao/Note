@@ -175,3 +175,30 @@ const hook = async_hooks.createHook(callbacks).enable();
 #### resource
 
 是一个对象，代表了已经初始化的实际的异步资源。
+
+* before(asyncId)
+
+当启动异步操作或完成磁盘读写时，将调用回调通知用户。before 回调将在执行回调前被调用。asyncId 分配给执行回调的资源。
+
+* after(asyncId)
+
+在完成 before 指定的回调后立即调用。
+
+* destroy(asyncId)
+
+在与 asyncId 对应的资源被销毁后被调用。也会被嵌入器的 API emitDestroy() 异步调用。一些资源依赖垃圾收集进行清理，如果对传递给 init 中的资源进行引用，那么资源将永远不会被回收，从而导致内存泄漏。
+
+* promiseResolve(asyncId)
+
+当传递给 Promise 构造函数的 resolve 函数时调用。如果 Promise 使用另一个 Promise 状态作为 resolve，那么 Promise 将不会得到被响应res 或 rej。
+
+### 5. async_hooks.executionAsyncId()
+
+* Returns：返回当前执行的上下文的 asyncId
+
+### 6. async_hooks.triggerAsyncId()
+
+* Returns：当前正在被执行的回调的ID
+
+## Buffer
+
