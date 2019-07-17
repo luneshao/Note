@@ -202,3 +202,103 @@ const hook = async_hooks.createHook(callbacks).enable();
 
 ## Buffer
 
+在引入 TypedArray 之前，JavaScript 语言没有用于读取或操作二进制数据流的机制。 Buffer 类是作为 Node.js API 的一部分引入的，用于在 TCP 流、文件系统操作、以及其他上下文中与八位字节流进行交互。
+
+* Buffer 实例也是 Uint8Array 实例，但是与 TypedArray 有微小的不同。 例如，ArrayBuffer#slice() 会创建切片的 _拷贝_ ，而 Buffer#slice() 是在现有的 Buffer 上 _创建_ 而不拷贝，这使得 Buffer#slice() 效率更高。
+
+## fs
+
+* 用于以模仿标准 POSIX 函数的方式与文件系统进行交互。
+* 大多数 fs 操作接受的文件路径可以指定为字符串、Buffer、或使用 file: 协议的 URL 对象。
+* 在 Windows 上，Node.js 遵循每个驱动器工作目录的概念。 当使用没有反斜杠的驱动器路径时，可以观察到此行为。
+* WHATWG URL 对象，仅支持使用 file: 协议的 URL 对象。
+    * 除 Windows 外，在所有其他平台上，不支持带有主机名的 file: URL，使用时将导致抛出错误。
+    * 包含编码后的斜杆字符（%2F）的 file: URL 在所有平台上都将导致抛出错误。
+
+### fs.open()
+
+Node.js 抽象出操作系统之间的特定差异，并为所有打开的文件分配一个数字型的文件描述符。
+
+fs.open() 方法用于分配新的文件描述符。
+
+### 线程池的使用
+
+线程池就是对线程的统一管理，预先创建出线程，如果有任务就把任务放到线程池里去执行。
+
+所有的文件系统 API，除了 fs.FSWatcher() 和那些显式同步的之外，都使用 [libuv](https://zhuanlan.zhihu.com/p/50497450) 的线程池，这对某些应用程序可能会产生意外和负面的性能影响。
+
+### fs.Dirent 类
+
+当使用 withFileTypes 选项设置为 true 调用 fs.readdir() 或 fs.readdirSync() 时，生成的数组将填充 fs.Dirent 对象，而不是字符串或 Buffer。
+
+实例判断 fs.Dirent 对象描述类型：块设备、字符设备、文件系统目录、FIFO、常规文件、套接字、描述符号链接、文件名。
+
+### fs.FSWatcher 类
+
+成功调用 fs.watch() 方法将返回一个新的 fs.FSWatcher 对象。
+
+* change 事件：每当修改指定监视的文件，就会触发 'change' 事件。
+    * eventType：
+    * filename
+* close 事件
+* error 事件
+* watcher.close()：给定的 fs.FSWatcher 停止监视更改。
+
+### fs.ReadStream 类
+
+成功调用 fs.createReadStream() 将返回一个新的 fs.ReadStream 对象。所有 fs.ReadStream 对象都是可读流。
+
+* close 事件：当 fs.ReadStream 的底层文件描述符已关闭时触发。
+* open 事件：当 fs.ReadStream 的文件描述符打开时触发。
+* ready 事件：'open' 事件之后立即触发。
+
+readStream.bytesRead：到目前为止已读取的字节数。
+readStream.path：流正在读取的文件的路径，由 fs.createReadStream() 的第一个参数指定。
+readStream.pending：在触发 ready 前未打开文件，则返回 true。
+
+### fs.Stats 类
+
+fs.Stats 对象提供有关文件的信息。
+
+实例判断 fs.Stats 对象描述类型：块设备、字符设备、文件系统目录、FIFO、常规文件、套接字、符号链接。
+
+* stats.dev：包含该文件的设备的数字标识符。
+* stats.ino：文件系统特定的文件索引节点编号。
+* stats.mode：描述文件类型和模式的位字段。
+* stats.nlink：文件存在的硬链接数。
+* stats.uid：拥有该文件（POSIX）的用户的数字型用户标识符。
+* stats.gid：拥有该文件（POSIX）的群组的数字型群组标识符。
+* stats.rdev：如果文件被视为特殊文件，则此值为数字型设备标识符。
+* stats.size：文件的大小。
+* stats.blksize：用于 I/O 操作的文件系统块的大小。
+* stats.blocks：为此文件分配的块数。
+* stats.atime（Ms）：上次访问此文件的时间戳，（以 POSIX 纪元以来的毫秒数表示）。
+* stats.mtime（Ms）：表明上次修改此文件的时间戳，（以 POSIX 纪元以来的毫秒数表示）。
+* stats.ctime（Ms）：表明上次更改文件状态的时间戳，（以 POSIX 纪元以来的毫秒数表示）。
+* stats.birthtime（Ms）：创建时间的时间戳，（以 POSIX 纪元以来的毫秒数表示）。
+    * atimeMs、 mtimeMs、 ctimeMs 和 birthtimeMs 属性是保存相应时间（以毫秒为单位）的数值。 它们的精度取决于平台。
+    * atime、 mtime、 ctime 和 birthtime 是对应时间的 Date 对象。
+    
+## fs.WriteStream 类
+
+WriteStream 是一个可写流。事件类型同上。
+
+## fs.access(path[, mode], callback)
+
+测试用户对 path 指定的文件或目录的权限。
+
+## fs.appendFile(path, data[, options], callback)
+
+异步地将数据追加到文件，如果文件尚不存在则创建该文件。 data 可以是字符串或 Buffer。
+
+## fs.chmod(path, mode, callback)
+
+异步地更改文件的权限。
+
+## fs.chown(path, uid, gid, callback)
+
+异步地更改文件的所有者和群组。
+
+## fs.createReadStream(path[, options])
+
+
