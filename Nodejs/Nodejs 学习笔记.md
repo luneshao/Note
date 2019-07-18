@@ -307,3 +307,53 @@ WriteStream 是一个可写流。事件类型同上。
 ### 13. fs.createWriteStream(path[, options])
 
 * options.flags：写文件的方式。覆盖、追加或修改等。[可选择的值](http://nodejs.cn/api/fs.html#fs_file_system_flags)
+
+### 14. fs.existsSync(path)
+
+判断路径是否存在。
+
+（😑吐槽：话说啊，中间的那些真的看不懂，大概是和系统相关的。）
+
+### 15. fs.mkdtemp[Sync](prefix[, options], callback)
+
+创建一个唯一的临时目录。
+
+```js
+// 生成要附加在必需的 prefix 后面的六位随机字符，以创建唯一的临时目录。
+fs.mkdtemp(path.join(os.tmpdir(), '目录-'), (err, folder) => {
+  if (err) throw err;
+  console.log(folder);
+  // 输出: /tmp/目录-itXde2 或 C:\Users\...\AppData\Local\Temp\目录-itXde2
+});
+```
+
+fs.mkdtemp() 方法将六位随机选择的字符直接附加到 prefix 字符串。如要创建子临时目录需加特定平台的路径分隔符（require('path').sep）。
+
+```js
+// 此用法是正确的：
+const { sep } = require('path');
+fs.mkdtemp(`${tmpDir}${sep}`, (err, folder) => {
+  if (err) throw err;
+  console.log(folder);
+  // 输出类似 `/tmp/abc123`。
+  // 新的临时目录会被创建在 /tmp 目录中。
+});
+```
+
+### 16. fs.open(path[, flags[, mode]], callback)
+
+异步地打开文件。
+
+### 17. fs.read(fd, buffer, offset, length, position, callback)
+
+从 fd 指定的文件中读取数据。
+
+### 18. fs.readdir(path[, options], callback)
+
+读取目录的内容。 
+
+### 19. fs.readFile(path[, options], callback)
+
+异步地读取文件的全部内容。
+
+（fs模块未完）
