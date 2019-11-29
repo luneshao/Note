@@ -327,6 +327,23 @@ class Student(object):
 
 2. **slots**定义的属性仅对当前类实例起作用，对继承的子类是不起作用的
 3. 实现自定义的实例输出，使用 `__str__()` 返回一个自定义字符串
+```py
+# eg
+>>> class Child (object):
+...     def __init__(self):
+...             pass
+... 
+>>> c
+<__main__.Child object at 0x10127d0d0> # 变量c指向的就是一个 Child 的实例，后面的 0x10127d0d0 是内存地址
+>>> def str():
+...     return 'str'
+>>> Child.__str__ = str
+>>> c
+<__main__.Child object at 0x10127d0d0> # 因为 __str__ 是显示给用户的，__repr__ 是显示给开发者的
+>>> Child.__repr__ = str
+>>> c
+str
+```
 4. 如果一个类想实现迭代，就必须实现一个`__iter__()`方法，方法返回一个可迭代对象。Python 的 for 循环就会不断调用该迭代对象的**next**()方法拿到循环的下一个值，直到遇到 StopIteration 错误时退出循环。
 5. `__getitem__`实现对象的类数组索引取值
 6. `__getattr__()`预处理对象没有的属性
